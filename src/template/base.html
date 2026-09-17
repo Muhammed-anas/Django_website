@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopZone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #EFF1EA;
+            --surface: #FFFFFF;
+            --ink: #16241D;
+            --ink-soft: #52604F;
+            --accent: #C17F2A;
+            --accent-deep: #9C651E;
+            --line: #C9CDBF;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        a { color: var(--ink); }
+
+        .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+        /* --- Nav --- */
+        .site-nav {
+            border-bottom: 1px solid var(--line);
+            background: var(--paper);
+        }
+        .site-nav .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+        .brand {
+            font-size: 1.35rem;
+            text-decoration: none;
+            color: var(--ink);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            font-size: 0.94rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ink-soft);
+            padding-bottom: 3px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+        .nav-links a:hover { color: var(--ink); border-color: var(--ink); }
+        .nav-links .greeting { color: var(--ink); }
+
+        /* --- Buttons --- */
+        .btn-brand {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 3px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+        }
+        .btn-brand:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+        .btn-brand.block { display: block; width: 100%; text-align: center; }
+
+        .btn-outline {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.86rem;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 3px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            text-decoration: none;
+            cursor: pointer;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent-deep); }
+
+        /* --- Main / footer --- */
+        main { flex: 1; padding: 48px 0 64px; }
+        .site-footer {
+            border-top: 1px solid var(--line);
+            padding: 20px 0;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+        }
+
+        /* --- Alerts --- */
+        .alert-brand {
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--accent);
+            background: var(--surface);
+            padding: 12px 16px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .alert-brand button {
+            background: none;
+            border: none;
+            color: var(--ink-soft);
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        /* --- Forms --- */
+        .field { margin-bottom: 18px; }
+        .field label {
+            display: block;
+            font-size: 0.84rem;
+            color: var(--ink-soft);
+            margin-bottom: 6px;
+        }
+        .field input[type="text"],
+        .field input[type="email"],
+        .field input[type="password"],
+        .field select,
+        .field textarea,
+        .field .form-control {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid var(--line);
+            background: transparent;
+            padding: 8px 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            color: var(--ink);
+            border-radius: 0;
+        }
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            outline: none;
+            border-bottom: 1px solid var(--accent);
+        }
+        .field-error {
+            font-size: 0.8rem;
+            color: #9C3B2E;
+            margin-top: 4px;
+        }
+
+        .auth-card {
+            max-width: 380px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 40px 36px;
+        }
+        .auth-card h1 {
+            font-size: 1.6rem;
+            margin: 0 0 4px;
+            text-align: center;
+        }
+        .auth-card .sub {
+            text-align: center;
+            color: var(--ink-soft);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+        .auth-foot {
+            text-align: center;
+            font-size: 0.86rem;
+            color: var(--ink-soft);
+            margin-top: 20px;
+        }
+        .auth-foot a { color: var(--accent-deep); text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="site-nav">
+        <div class="wrap">
+            <a class="brand" href="{% url 'home' %}">ShopZone</a>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <span class="greeting">Hi, {{ user.first_name|default:user.username }}</span>
+                    <a href="{% url 'logout' %}">Log out</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Log in</a>
+                    <a href="{% url 'register' %}">Create account</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrap">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-brand">
+                    <span>{{ message }}</span>
+                    <button type="button" aria-label="Dismiss" onclick="this.parentElement.remove()">&times;</button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">ShopZone &mdash; goods worth keeping.</div>
+    </footer>
+</body>
+</html>
